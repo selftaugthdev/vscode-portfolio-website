@@ -16,47 +16,6 @@ export const SideSecondPanel: React.FC<IProps> = (props: any) => {
   let isTabletOrMobile = useMediaQuery({ query: "(max-width: 943px)" });
 
   const router = useRouter();
-
-/*   const [activeCurrentSubLink, setActiveCurrentSubLink] = useState("");
-  useEffect(() => {
-    // This code is inefficient and can be written better way, so feel free to raise a PR to the original Repository as your open source contribution
-    let currentSubLink = window.location.href.split("/").pop();
-    if (currentSubLink === "Experience") {
-      setActiveCurrentSubLink("experience.css");
-    } else if (currentSubLink === "Skills") {
-      setActiveCurrentSubLink("skills.js");
-    } else if (currentSubLink === "Projects") {
-      setActiveCurrentSubLink("projects.ts");
-    } else if (currentSubLink === "1") {
-      setActiveCurrentSubLink("1");
-    } else if (currentSubLink === "2") {
-      setActiveCurrentSubLink("2");
-    } else if (currentSubLink === "3") {
-      setActiveCurrentSubLink("3");
-    } else if (currentSubLink === "4") {
-      setActiveCurrentSubLink("4");
-    } else if (currentSubLink === "5") {
-      setActiveCurrentSubLink("5");
-    } else if (currentSubLink === "6") {
-      setActiveCurrentSubLink("6");
-    } else if (currentSubLink === "") {
-      setActiveCurrentSubLink("index.html");
-    } else if (currentSubLink === "Hobbies") {
-      setActiveCurrentSubLink("Hobbies");
-    } else if (currentSubLink === "Blogs") {
-      setActiveCurrentSubLink("Blogs");
-    } else if (currentSubLink === "Email") {
-      setActiveCurrentSubLink("Email");
-    } else if (currentSubLink === "Gaming") {
-      setActiveCurrentSubLink("Gaming");
-    } else if (currentSubLink === "Anime") {
-      setActiveCurrentSubLink("Anime");
-    } else if (currentSubLink === "Learning") {
-      setActiveCurrentSubLink("Learning");
-    } else if (currentSubLink === "Startup") {
-      setActiveCurrentSubLink("Startup");
-    }
-  }); */
   
 const [activeCurrentSubLink, setActiveCurrentSubLink] = useState("");
 
@@ -430,7 +389,7 @@ useEffect(() => {
             <span className="text-gray-400">All Rights Reserved. </span>
           </li>
           <li>
-            <span className="text-gray-400"> Ⓒ Copyright 2024. </span>
+            <span className="text-gray-400"> Ⓒ Copyright {new Date().getFullYear()}. </span>
           </li>
         </ul>
       )}

@@ -47,7 +47,7 @@ const Home: NextPage = () => {
         <meta property="og:locale" content="en_US" />
         <meta property="og:type" content="website" />
         <meta property="og:url" content={"https://www.thierrydebelder.com"} />
-        <meta property="og:site_name" content="Your Name" />
+        <meta property="og:site_name" content="Thierry De Belder" />
         <meta property="og:image" content="/mainthumbnail.PNG" />
         <meta property="og:image:width" content="1040" />
         <meta property="og:image:height" content="600" />
@@ -223,7 +223,7 @@ const Home: NextPage = () => {
                     >
                       <img src="https://img.icons8.com/color/28/null/twitter--v1.png" />{" "}
                       <p className="flex items-center justify-start font-sans text-sm text-gray-200">
-                        Twitter Handle
+                        Twitter Profile
                       </p>
                     </div>
                   </Link>
