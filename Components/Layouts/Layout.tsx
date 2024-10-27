@@ -1,20 +1,31 @@
 import { useEffect, useState } from "react";
 import styles from "./Layout.module.css";
 import { SideSecondPanel } from "./SeondPanel/SideSecondPanel";
-import Clock from "react-live-clock";
-import countapi from "countapi-js";
+import dynamic from 'next/dynamic';
 import { numberTOWords } from "../Helper/utility";
 import { SideMainPanel } from "./SideMainPanel/SideMainPanel";
 import Link from "next/link";
 import { useMediaQuery } from "react-responsive";
 import { useRouter } from "next/router";
 
+const Clock = dynamic(() => import('react-live-clock'), { ssr: false });
+
 const Layout: React.FC = ({ children, visitorsCount }: any) => {
-  const isTabletOrMobile = useMediaQuery({ query: "(max-width: 943px)" });
-  
+  const [isTabletOrMobile, setIsTabletOrMobile] = useState(false);
   const [openSideMenu, setOpenSideMenu] = useState(false);
+  const [isClient, setIsClient] = useState(false);
 
   const router = useRouter();
+
+  useEffect(() => {
+    setIsClient(true);
+    const mediaQuery = window.matchMedia("(max-width: 943px)");
+    setIsTabletOrMobile(mediaQuery.matches);
+
+    const handler = (e: MediaQueryListEvent) => setIsTabletOrMobile(e.matches);
+    mediaQuery.addListener(handler);
+    return () => mediaQuery.removeListener(handler);
+  }, []);
 
   useEffect(() => {
     if (isTabletOrMobile) {
@@ -38,6 +49,10 @@ const Layout: React.FC = ({ children, visitorsCount }: any) => {
   const toggleSideMainMenu = () => {
     setOpenSideMenu(!openSideMenu);
   };
+
+  if (!isClient) {
+    return null; // or a loading spinner
+  }
 
   return (
     <>
@@ -149,12 +164,12 @@ const Layout: React.FC = ({ children, visitorsCount }: any) => {
           </ul>
           <ul className="left ">
             <li>
-              {
+              {isClient && (
                 <Clock
                   format={"dddd, MMMM Mo, YYYY, h:mm:ss A"}
                   ticking={true}
                 />
-              }
+              )}
             </li>
             <li>UTF-8</li>
             <li>

@@ -79,7 +79,7 @@ const Email: NextPage = () => {
                 <div className="grid grid-cols-1 lg:grid-cols-2">
                   <div className="p-6 mt-8 mr-2 sm:rounded-lg">
                     <h1 className="mx-auto text-4xl font-extrabold tracking-tight text-gray-200 sm:text-5xl dark:text-white">
-                      Get in touch
+                      Get in touch (still under construction)
                     </h1>
                     <p className="mt-2 text-lg font-medium text-gray-600 text-normal sm:text-2xl dark:text-gray-400">
                       Fill in the form to start a conversation

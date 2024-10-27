@@ -1,6 +1,6 @@
 import { NextPage } from "next";
 import { Scrollbars } from "react-custom-scrollbars-2";
-import Image from "next/legacy/image";
+import Image from "next/image";
 import Link from "next/link";
 import { useMediaQuery } from "react-responsive";
 import { projectsdata } from "../../Components/JSON/projectsdata";
@@ -32,7 +32,7 @@ const Projects: NextPage = (props: any) => {
         <meta property="og:locale" content="en_US" />
         <meta property="og:type" content="website" />
         <meta property="og:url" content={"https://www.thierrydebelder.com"} />
-        <meta property="og:site_name" content="Your Name" />
+        <meta property="og:site_name" content="Thierry De Belder" />
         <meta property="og:image" content="/mainthumbnail.PNG" />
         <meta property="og:image:width" content="1040" />
         <meta property="og:image:height" content="600" />
