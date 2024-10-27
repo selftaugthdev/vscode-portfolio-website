@@ -11,7 +11,7 @@ import { useRouter } from "next/router";
 
 const Layout: React.FC = ({ children, visitorsCount }: any) => {
   const isTabletOrMobile = useMediaQuery({ query: "(max-width: 943px)" });
-  const [VisitorCount, setVisitorCount] = useState("");
+  
   const [openSideMenu, setOpenSideMenu] = useState(false);
 
   const router = useRouter();
@@ -39,9 +39,6 @@ const Layout: React.FC = ({ children, visitorsCount }: any) => {
     setOpenSideMenu(!openSideMenu);
   };
 
-  countapi.visits("global").then((result: any) => {
-    setVisitorCount(numberTOWords(result.value));
-  });
   return (
     <>
       <div className="w-full header">
@@ -151,7 +148,6 @@ const Layout: React.FC = ({ children, visitorsCount }: any) => {
             <li>Tailwind</li>
           </ul>
           <ul className="left ">
-            <li>{VisitorCount} Total Visits</li>
             <li>
               {
                 <Clock
@@ -174,7 +170,6 @@ const Layout: React.FC = ({ children, visitorsCount }: any) => {
             <li>Tailwind</li>
           </ul>
           <ul className="left ">
-            <li>{VisitorCount} Total Visits</li>
           </ul>
         </div>
       )}

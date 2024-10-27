@@ -1,4 +1,4 @@
-import type { NextApiRequest, NextApiResponse } from "next";
+/* import type { NextApiRequest, NextApiResponse } from "next";
 import AWS from "aws-sdk";
 
 type Data = {
@@ -59,3 +59,4 @@ export default function handler(
       res.status(200).json({ data: true, error: "" });
     });
 }
+ */
