@@ -52,7 +52,7 @@ const Projects: NextPage = (props: any) => {
         {!isTabletOrMobile ? (
           <div className="grid w-full pb-5 mt-3 mb-5 grid-cols-1s xl:grid-cols-3 lg:grid-cols-2 md:grid-cols-2 sm:grid-cols-1 xs:grid-cols-1 ">
             {props?.projects?.map((obj: any, index: number) => (
-              <div className="p-3 mb-4">
+              <div key={obj.id || index} className="p-3 mb-4">
                 <div className="w-full overflow-hidden transition-all duration-500 transform shadow-lg cursor-pointer rounded-xl hover:shadow-2xl hover:scale-105">
                   <Link href={`/Projects/${index + 1}`}>
                     <div>
@@ -91,7 +91,7 @@ const Projects: NextPage = (props: any) => {
         ) : (
           <div className="grid w-full mt-3 pb-60 grid-cols-1s xl:grid-cols-3 lg:grid-cols-2 md:grid-cols-2 sm:grid-cols-1 xs:grid-cols-1 ">
             {props?.projects?.map((obj: any, index: number) => (
-              <div className="mb-5 " key={index + 125}>
+              <div key={obj.id || index} className="mb-5 ">
                 <div className="w-full overflow-hidden transition-all duration-500 transform shadow-lg cursor-pointer rounded-xl hover:shadow-2xl hover:scale-105">
                   <Link href={`/Projects/${index + 1}`}>
                     <div>

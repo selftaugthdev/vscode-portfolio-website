@@ -1,4 +1,4 @@
-import { Scrollbars } from "react-custom-scrollbars";
+import { Scrollbars } from "react-custom-scrollbars-2";
 import Image from "next/legacy/image";
 import { useMediaQuery } from "react-responsive";
 import Zoom from "react-medium-image-zoom";
