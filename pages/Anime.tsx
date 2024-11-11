@@ -1,9 +1,8 @@
-import { NextPage } from "next";
-import AnimeComponent from "../Components/AnimeComponent";
+import React from 'react';
+import AnimeComponent from '../Components/AnimeComponent';
 
-const Anime: NextPage = () => {
+const AnimePage: React.FC = () => {
   return <AnimeComponent />;
 };
 
-/* export default Anime;
- */
+export default AnimePage;
