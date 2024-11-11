@@ -33,7 +33,7 @@ const Projects: NextPage = (props: any) => {
         <meta property="og:type" content="website" />
         <meta property="og:url" content={"https://www.thierrydebelder.com"} />
         <meta property="og:site_name" content="Thierry De Belder" />
-        <meta property="og:image" content="/mainthumbnail.PNG" />
+        <meta property="og:image" content="/mainthumbnail.PNG" /> 
         <meta property="og:image:width" content="1040" />
         <meta property="og:image:height" content="600" />
         <meta name="twitter:card" content="summary_large_image" />
