@@ -1,13 +1,9 @@
 /** @type {import('next').NextConfig} */
-module.exports = {
+const nextConfig = {
   reactStrictMode: true,
-  typescript: {
-    ignoreBuildErrors: false,
-  },
-  serverRuntimeConfig: {
-    PROJECT_ROOT: __dirname,
-  },
   images: {
-    domains: ["localhost", "vercel.app", "ayedot.com"],
+    domains: ['your-domain.com'],
   },
-};
+}
+
+module.exports = nextConfig

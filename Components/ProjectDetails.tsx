@@ -1,9 +1,21 @@
+import React from 'react';
 import { Scrollbars } from "react-custom-scrollbars-2";
 import Image from "next/legacy/image";
 import { useMediaQuery } from "react-responsive";
 import Zoom from "react-medium-image-zoom";
 
-const ProjectDetails: React.FC<any> = ({ projectDetails, altt }: any) => {
+type ProjectProps = {
+  project: {
+    banner: string;
+    // ... other properties
+  };
+};
+
+const ProjectDetails: React.FC<ProjectProps> = ({ project }) => {
+  if (!project) {
+    return <div>Project not found</div>;
+  }
+
   let isTabletOrMobile = useMediaQuery({ query: "(max-width: 943px)" });
 
   return !isTabletOrMobile ? (
@@ -20,7 +32,7 @@ const ProjectDetails: React.FC<any> = ({ projectDetails, altt }: any) => {
             width: "100%",
             borderRadius: "1em",
             height: "50vh",
-            backgroundImage: `url(${projectDetails.banner})`,
+            backgroundImage: `url(${project.banner})`,
             paddingBottom: "35%",
             backgroundPosition: "center",
             backgroundSize: "cover",
@@ -33,18 +45,18 @@ const ProjectDetails: React.FC<any> = ({ projectDetails, altt }: any) => {
                 <div className="p-6 bg-gray-900  dark:bg-gray-800 sm:px-20">
                   <Image
                     className="h-10 w-10 inline-block rounded-lg"
-                    src={projectDetails.logo}
-                    alt={altt}
+                    src={project.logo}
+                    alt={project.title}
                     width="85"
                     height="85"
                   />
-                  {projectDetails.github && (
+                  {project.github && (
                     <div
                       className="float-right inline-block"
                       style={{ marginRight: "-55px" }}
                     >
                       <a
-                        href={projectDetails.github}
+                        href={project.github}
                         target="_blank"
                         rel="noreferrer"
                       >
@@ -58,7 +70,7 @@ const ProjectDetails: React.FC<any> = ({ projectDetails, altt }: any) => {
                       </a>
                     </div>
                   )}
-                  {projectDetails.link && (
+                  {project.link && (
                     <div
                       className="float-right butto pr-4 inline-block pt-3 text-xl font-bold text-blue-400"
                       style={{ marginRight: "-55px" }}
@@ -68,22 +80,22 @@ const ProjectDetails: React.FC<any> = ({ projectDetails, altt }: any) => {
                         target="_blank"
                         rel="noreferrer"
                       >
-                        {projectDetails.link}
+                        {project.link}
                       </a>
                     </div>
                   )}
                   <div className="mt-5 text-2xl dark:text-gray-200">
-                    <span className="font-bold">{projectDetails.name}</span> -{" "}
-                    {projectDetails.title}
+                    <span className="font-bold">{project.name}</span> -{" "}
+                    {project.title}
                   </div>
                   <div className="mt-6 text-gray-400 text-md dark:text-gray-400">
-                    {projectDetails.description}
+                    {project.description}
                   </div>
                   <div className="mt-6 text-gray-400 font-semibold text-md dark:text-gray-400">
                     Key Features
                   </div>
                   <ul className="mt-2 text-gray-400 list-disc  text-md dark:text-gray-400">
-                    {projectDetails?.features.map((feature: string) => (
+                    {project?.features.map((feature: string) => (
                       <li key={feature + `${isTabletOrMobile && "sadasd"}`}>
                         • {feature}
                       </li>
@@ -93,7 +105,7 @@ const ProjectDetails: React.FC<any> = ({ projectDetails, altt }: any) => {
                     Technologies Used
                   </div>
                   <div className="pt-1">
-                    {projectDetails?.skills.map((skill: string) => (
+                    {project?.skills.map((skill: string) => (
                       <div
                         key={skill + `${isTabletOrMobile && "sadasd"}`}
                         className="text-xs inline-flex mt-2 items-center font-bold leading-sm  p-1 pl-2 pr-2 mr-2 bg-blue-100 text-gray-700 rounded-full"
@@ -111,18 +123,18 @@ const ProjectDetails: React.FC<any> = ({ projectDetails, altt }: any) => {
               Snapshots
             </div>
             <div className="w-full mt-2 mb-5 pb-5 grid grid-cols-1s xl:grid-cols-3 lg:grid-cols-2 md:grid-cols-1 sm:grid-cols-1 xs:grid-cols-1 ">
-              {projectDetails?.snapshots.map((shot: string, index: any) => (
+              {project?.snapshots.map((shot: string, index: any) => (
                 <div
                   className="mr-3 mb-3"
-                  key={altt + `${isTabletOrMobile && "scren"} ${index}`}
+                  key={project.title + `${isTabletOrMobile && "scren"} ${index}`}
                 >
                   <Zoom zoomMargin={100}>
                     <Image
                       className="text-center rounded-xl "
                       src={shot}
-                      alt={altt}
+                      alt={project.title}
                       width="3000"
-                      height={projectDetails.height}
+                      height={project.height}
                       objectPosition="center"
                     />
                   </Zoom>
@@ -137,7 +149,7 @@ const ProjectDetails: React.FC<any> = ({ projectDetails, altt }: any) => {
             Based to the current project you are watching.
           </p>
           <div className="w-full mt-5 mb-5 pb-5  grid grid-cols-1s xl:grid-cols-3 lg:grid-cols-2 md:grid-cols-2 sm:grid-cols-1 xs:grid-cols-1 ">
-            {projectDetails?.others.map((project: any) => (
+            {project?.others.map((project: any) => (
               <div
                 key={project.thumbnail + `${isTabletOrMobile && "aa"}`}
                 className="mb-4 p-3"
@@ -188,7 +200,7 @@ const ProjectDetails: React.FC<any> = ({ projectDetails, altt }: any) => {
           width: "100%",
           borderRadius: "1em",
           height: "50vh",
-          backgroundImage: `url(${projectDetails.banner})`,
+          backgroundImage: `url(${project.banner})`,
           backgroundPosition: "center",
           backgroundSize: "cover",
         }}
@@ -199,15 +211,15 @@ const ProjectDetails: React.FC<any> = ({ projectDetails, altt }: any) => {
             <div className="p-3 bg-gray-900  dark:bg-gray-800 sm:px-20">
               <Image
                 className="h-10 w-10 inline-block rounded-lg"
-                src={projectDetails.logo}
-                alt={altt}
+                src={project.logo}
+                alt={project.title}
                 width="65"
                 height="65"
               />
-              {projectDetails.github && (
+              {project.github && (
                 <div className="float-right mt-1 inline-block">
                   <a
-                    href={projectDetails.github}
+                    href={project.github}
                     target="_blank"
                     rel="noreferrer"
                   >
@@ -221,25 +233,25 @@ const ProjectDetails: React.FC<any> = ({ projectDetails, altt }: any) => {
                   </a>
                 </div>
               )}
-              {projectDetails.link && (
+              {project.link && (
                 <div className="float-right butto pr-4 inline-block pt-3 text-md font-bold text-blue-400">
                   <a href="https://ayedot.com" target="_blank" rel="noreferrer">
-                    {projectDetails.link}
+                    {project.link}
                   </a>
                 </div>
               )}
               <div className="mt-5 text-xl dark:text-gray-200">
-                <span className="font-bold">{projectDetails.name}</span> -{" "}
-                {projectDetails.title}
+                <span className="font-bold">{project.name}</span> -{" "}
+                {project.title}
               </div>
               <div className="mt-6 text-gray-400 text-sm font-medium dark:text-gray-400">
-                {projectDetails.description}
+                {project.description}
               </div>
               <div className="mt-6 text-gray-400 font-semibold text-md dark:text-gray-400">
                 Key Features
               </div>
               <ul className="mt-2 text-gray-400 list-disc  text-sm dark:text-gray-400">
-                {projectDetails?.features.map((feature: string) => (
+                {project?.features.map((feature: string) => (
                   <li
                     className="pb-2"
                     key={feature + `${isTabletOrMobile && "moba"}`}
@@ -252,7 +264,7 @@ const ProjectDetails: React.FC<any> = ({ projectDetails, altt }: any) => {
                 Technologies Used
               </div>
               <div className="pt-1">
-                {projectDetails?.skills.map((skill: string) => (
+                {project?.skills.map((skill: string) => (
                   <div
                     key={skill + `${isTabletOrMobile && "moba"}`}
                     className="text-xs inline-flex mt-2 items-center font-bold leading-sm  p-1 pl-2 pr-2 mr-2 bg-blue-100 text-gray-700 rounded-full"
@@ -270,7 +282,7 @@ const ProjectDetails: React.FC<any> = ({ projectDetails, altt }: any) => {
           Snapshots
         </div>
         <div className="w-full mt-2 mb-5 pb-5 grid grid-cols-1s xl:grid-cols-3 lg:grid-cols-2 md:grid-cols-1 sm:grid-cols-1 xs:grid-cols-1 ">
-          {projectDetails.snapshots.map((shot: string) => (
+          {project.snapshots.map((shot: string) => (
             <div
               key={shot + `${isTabletOrMobile && "moba"}`}
               className="mr-3 mb-3"
@@ -279,9 +291,9 @@ const ProjectDetails: React.FC<any> = ({ projectDetails, altt }: any) => {
                 <Image
                   className="text-center rounded-xl "
                   src={shot}
-                  alt={altt}
+                  alt={project.title}
                   width="3000"
-                  height={projectDetails.height}
+                  height={project.height}
                   objectPosition="center"
                 />
               </Zoom>
