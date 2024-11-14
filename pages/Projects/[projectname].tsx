@@ -1,6 +1,7 @@
 import { useRouter } from 'next/router';
 import ProjectDetails from '../../Components/ProjectDetails';
 import { GetStaticProps, GetStaticPaths } from 'next';
+import type { NextPage } from 'next/types';
 
 type Project = {
   id: number;
@@ -44,18 +45,19 @@ const projects: Project[] = [
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const paths = projects.map((project) => ({
-    params: { projectname: project.name.toString() },
+    params: { projectname: project.name.toLowerCase().replace(/\s+/g, '-') },
   }));
 
   return {
     paths,
-    fallback: false, // or 'blocking' to generate pages on demand
+    fallback: false,
   };
 };
 
-export const getStaticProps: GetStaticProps = async ({ params }) => {
+export const getStaticProps: GetStaticProps<{ project: Project }> = async ({ params }) => {
+  const projectName = params?.projectname as string;
   const project = projects.find(
-    (p) => p.name.toString() === params?.projectname
+    (p) => p.name.toLowerCase().replace(/\s+/g, '-') === projectName
   );
 
   if (!project) {
@@ -71,7 +73,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   };
 };
 
-const ProjectPage = ({ project }: { project: Project }) => {
+const ProjectPage: NextPage<{ project: Project }> = ({ project }) => {
   if (!project) {
     return <div>Loading....</div>;
   }

@@ -7,7 +7,23 @@ import Zoom from "react-medium-image-zoom";
 type ProjectProps = {
   project: {
     banner: string;
-    // ... other properties
+    logo: string;
+    title: string;
+    name: string;
+    description: string;
+    link?: string;  // optional property
+    github?: string;  // optional property
+    features: string[];
+    skills: string[];
+    snapshots: string[];
+    height: number;
+    others: Array<{
+      thumbnail: string;
+      logo: string;
+      title: string;
+      description: string;
+      link: string;
+    }>;
   };
 };
 
@@ -123,10 +139,10 @@ const ProjectDetails: React.FC<ProjectProps> = ({ project }) => {
               Snapshots
             </div>
             <div className="w-full mt-2 mb-5 pb-5 grid grid-cols-1s xl:grid-cols-3 lg:grid-cols-2 md:grid-cols-1 sm:grid-cols-1 xs:grid-cols-1 ">
-              {project?.snapshots.map((shot: string, index: any) => (
+              {project?.snapshots.map((shot: string, index: number) => (
                 <div
                   className="mr-3 mb-3"
-                  key={project.title + `${isTabletOrMobile && "scren"} ${index}`}
+                  key={`${shot}-${index}`}
                 >
                   <Zoom zoomMargin={100}>
                     <Image
@@ -149,19 +165,19 @@ const ProjectDetails: React.FC<ProjectProps> = ({ project }) => {
             Based to the current project you are watching.
           </p>
           <div className="w-full mt-5 mb-5 pb-5  grid grid-cols-1s xl:grid-cols-3 lg:grid-cols-2 md:grid-cols-2 sm:grid-cols-1 xs:grid-cols-1 ">
-            {project?.others.map((project: any) => (
+            {project?.others.map((otherProject, index) => (
               <div
-                key={project.thumbnail + `${isTabletOrMobile && "aa"}`}
+                key={`${otherProject.thumbnail}-${index}`}
                 className="mb-4 p-3"
               >
                 <div className="w-full rounded-xl overflow-hidden cursor-pointer shadow-lg hover:shadow-2xl hover:scale-105 transform transition-all duration-500">
-                  <a href={project.link}>
+                  <a href={otherProject.link}>
                     <div>
                       <div className="pr-3 pl-3">
                         <Image
                           className="rounded-xl"
-                          src={project.thumbnail}
-                          alt={project.title}
+                          src={otherProject.thumbnail}
+                          alt={otherProject.title}
                           width="500"
                           height="270"
                         />
@@ -170,15 +186,15 @@ const ProjectDetails: React.FC<ProjectProps> = ({ project }) => {
                         <div className="flex items-center space-x-4">
                           <Image
                             className="h-10 w-10 rounded-full"
-                            src={project.logo}
-                            alt={project.title}
+                            src={otherProject.logo}
+                            alt={otherProject.title}
                             width="55"
                             height="55"
                           />
                           <h1 className="text-lg text-gray-100 font-bold">
-                            {project.title}
+                            {otherProject.title}
                             <p className=" font-medium text-gray-400 text-sm pt-1 w-4/5 ">
-                              {project.description}
+                              {otherProject.description}
                             </p>
                           </h1>
                         </div>

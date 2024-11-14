@@ -2,19 +2,16 @@ import { useEffect, useState } from "react";
 import styles from "./Layout.module.css";
 import { SideSecondPanel } from "./SeondPanel/SideSecondPanel";
 import Clock from "react-live-clock";
-import countapi from "countapi-js";
-import { numberTOWords } from "../Helper/utility";
+//import { numberTOWords } from "../Helper/utility";
 import { SideMainPanel } from "./SideMainPanel/SideMainPanel";
 import Link from "next/link";
 import { useMediaQuery } from "react-responsive";
-import { useRouter } from "next/router";
+//import { useRouter } from "next/router";
 
 const Layout: React.FC = ({ children, visitorsCount }: any) => {
   const isTabletOrMobile = useMediaQuery({ query: "(max-width: 943px)" });
-  
   const [openSideMenu, setOpenSideMenu] = useState(false);
-
-  const router = useRouter();
+  const pathname = usePathname();
 
   useEffect(() => {
     if (isTabletOrMobile) {
@@ -23,7 +20,7 @@ const Layout: React.FC = ({ children, visitorsCount }: any) => {
   }, [isTabletOrMobile]);
 
   useEffect(() => {
-    if (typeof window !== "undefined" && router.pathname !== "/") {
+    if (typeof window !== "undefined" && pathname !== "/") {
       let recentLinks: any = localStorage.getItem("history");
       recentLinks = recentLinks ? JSON.parse(recentLinks) : [];
       recentLinks = recentLinks.slice(0, 4);
@@ -33,7 +30,7 @@ const Layout: React.FC = ({ children, visitorsCount }: any) => {
       recentLinks.unshift(window.location.pathname);
       localStorage.setItem("history", JSON.stringify(recentLinks));
     }
-  }, [router.pathname]);
+  }, [pathname]);
 
   const toggleSideMainMenu = () => {
     setOpenSideMenu(!openSideMenu);
