@@ -2,23 +2,44 @@ import { useRouter } from 'next/router';
 import ProjectDetails from '../../Components/ProjectDetails';
 import { GetStaticProps, GetStaticPaths } from 'next';
 
-// Add this type
 type Project = {
   id: number;
-  name: string;
   banner: string;
-  // ... other properties
+  logo: string;
+  title: string;
+  name: string;
+  description: string;
+  link?: string;
+  github?: string;
+  features: string[];
+  skills: string[];
+  snapshots: string[];
+  height: number;
+  others: Array<{
+    thumbnail: string;
+    logo: string;
+    title: string;
+    description: string;
+    link: string;
+  }>;
 };
 
-// Add this data or import it from your data file
+// Add this data or import it from data file
 const projects: Project[] = [
   {
     id: 1,
     name: "Project 1",
     banner: "/project_banner.jpg",
-    // ... other properties
+    logo: "/path/to/logo.png",
+    title: "Project 1",
+    description: "Project description here",
+    features: [],
+    skills: [],
+    snapshots: [],
+    height: 0,
+    others: []
   },
-  // ... other projects
+  // ... other project
 ];
 
 export const getStaticPaths: GetStaticPaths = async () => {
@@ -28,7 +49,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
   return {
     paths,
-    fallback: false, // or 'blocking' if you want to generate pages on demand
+    fallback: false, // or 'blocking' to generate pages on demand
   };
 };
 
@@ -52,7 +73,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 
 const ProjectPage = ({ project }: { project: Project }) => {
   if (!project) {
-    return <div>Loading...</div>;
+    return <div>Loading....</div>;
   }
 
   return <ProjectDetails project={project} />;
